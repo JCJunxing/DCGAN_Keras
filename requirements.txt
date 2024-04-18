@@ -1,0 +1,12 @@
+IPython
+imghdr
+keras
+matplotlib
+numpy
+os
+pathlib
+skillsnetwork
+tensorflow
+time
+tqdm
+warnings
