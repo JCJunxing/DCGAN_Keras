@@ -59,23 +59,17 @@ $max_{D}(V(D))$
 
 To also incorporate the generated samples, we augment the right side of the equation with the generated $k$th sample $\hat{\mathbf{x}}_k$. As they are not part of the dataset $k \notin \mathcal{D} $, we have to include a second summation where $y=0$. Finally, combining the cases of $y=1$ and $y=0$, we get:
 
-\begin{align*}
-V(D) & = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(\hat{\mathbf{x}}_k))
-\end{align*}
+$V(D) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(\hat{\mathbf{x}}_k))$
 
 ___Generator___ 
 
 For the generator we simply replace $\hat{\mathbf{x}}_k$ with the $G(\mathbf{z}_k)$ . 
 
-\begin{align*}
-V(G,D) & = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(G(\mathbf{z}_k)))
-\end{align*}
+$V(G,D) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(G(\mathbf{z}_k)))$
 
 As this is a density estimation problem, it is common to replace the summation with the expected value like in <a href=https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-GPXX0XCEEN/papers/1406.2661.pdf >[1]</a>. We replace the summations with an expectation where $p(\mathbf{x})$ is the true distribution and $p(\mathbf{z})$ is the distribution of $\mathbf{z}$.
 
-\begin{align*}
-V(D,G) & = \mathbb{E}_{\mathbf{x} \sim p(\mathbf{x})} \ln(D(\mathbf{x})) + \mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})} \ln(1 - D(G(\mathbf{z}))) 
-\end{align*}
+$V(D,G) = \mathbb{E}_{\mathbf{x} \sim p(\mathbf{x})} \ln(D(\mathbf{x})) + \mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})} \ln(1 - D(G(\mathbf{z})))$
 
 As we are trying to trick the discriminator, we would like to find a $G$ that minimize the above expression, such as:
 
@@ -104,9 +98,7 @@ ___Training Discriminator___
 
 We can also use the cross-entropy to train the discriminator; we simply multiply $V(G,D)$ by a negative number, set $y=0$ for the generated values and $y=1$ for the real values. We do not update the generator parameters. 
 
-\begin{align*}
-V(G) & = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(G(\mathbf{z}_k)))
-\end{align*}
+$V(G) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(G(\mathbf{z}_k)))$
 
 The first term is the real loss and the second is the fake loss in Keras.
 
