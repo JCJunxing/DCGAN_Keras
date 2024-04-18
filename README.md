@@ -59,7 +59,7 @@ $max_{D}(V(D))$
 
 To also incorporate the generated samples, we augment the right side of the equation with the generated $k$th sample $\hat{\mathbf{x}}_k$. As they are not part of the dataset $k \notin \mathcal{D} $, we have to include a second summation where $y=0$. Finally, combining the cases of $y=1$ and $y=0$, we get:
 
-$V(D) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(\hat{\mathbf{x}}_k))$
+$V(D) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}$_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(\hat{\mathbf{x}}_k))$
 
 ___Generator___ 
 
