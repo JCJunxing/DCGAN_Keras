@@ -59,7 +59,9 @@ $$max_{D}(V(D))$$
 
 To also incorporate the generated samples, we augment the right side of the equation with the generated $k$th sample $\hat{\mathbf{x}}_k$. As they are not part of the dataset $k \notin \mathcal{D} $, we have to include a second summation where $y=0$. Finally, combining the cases of $y=1$ and $y=0$, we get:
 
+
 $$V(D)=\sum_{ n	\in \mathcal{D}}  \ln(D(\mathbf{x}_n))+\sum_{k 	\notin \mathcal{D}} \ln(1-D(\hat{\mathbf{x}}_k) ) $$
+
 
 ___Generator___ 
 
@@ -73,9 +75,12 @@ As this is a density estimation problem, it is common to replace the summation w
 
 $$V(D,G)=\mathbb{E}_{x\sim p(\mathbf{x})} \ln(D(\mathbf{x})) + \mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})} \ln(1-D(G(\mathbf{z}) )) $$
 
+
 As we are trying to trick the discriminator, we would like to find a $G$ that minimize the above expression, such as:
 
+
 $$min_{G} max_{D} V(D,G)$$
+
 
 ### Training GANs 
 
@@ -92,7 +97,9 @@ Although the output of the generator passes through the discriminator, we do not
 
 Instead of maximizing the term, we can take the negative and minimize it. The resultant expression can be calculated in Keras using the cross-entropy loss where all the target values are set to one:
 
+
 $$\sum_{k 	\notin \mathcal{D}} log(1 - D(G(\mathbf{z}_k)) )$$
+
 
 ___Training Discriminator___
 
@@ -130,7 +137,6 @@ We will build and train DCGANs in the following content, using several approache
 
 ## Deep Convolutional Generative Adversarial Networks (DCGANs)
 
-### Case background
 
 In the case example, you work for an online anime video game company; the company would like to create a unique anime avatar for a game for each player. As there are millions of players, you must use a DCGANs to create each character.
 
