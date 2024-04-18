@@ -59,28 +59,21 @@ $max_{D}(V(D))$
 
 To also incorporate the generated samples, we augment the right side of the equation with the generated $k$th sample $\hat{\mathbf{x}}_k$. As they are not part of the dataset $k \notin \mathcal{D} $, we have to include a second summation where $y=0$. Finally, combining the cases of $y=1$ and $y=0$, we get:
 
-
-$V(D)=\sum_{ n	\in \mathcal{D}}  \ln(D(\mathbf{x}_n))+\sum_{k 	\notin \mathcal{D}} \ln(1-D(\hat{\mathbf{x}}_k))$
-
+$V(D) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(\hat{\mathbf{x}}_k))$
 
 ___Generator___ 
 
 For the generator we simply replace $\hat{\mathbf{x}}_k$ with the $G(\mathbf{z}_k)$ . 
 
-
-$V(G,D)=\sum_{n	\in \mathcal{D}} \ln(D(\mathbf{x}_n))+\sum_{k 	\notin \mathcal{D}} \ln(1-D(G(\mathbf{z}_k)))$
+$V(G,D) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(G(\mathbf{z}_k)))$
 
 As this is a density estimation problem, it is common to replace the summation with the expected value like in <a href=https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-GPXX0XCEEN/papers/1406.2661.pdf >[1]</a>. We replace the summations with an expectation where $p(\mathbf{x})$ is the true distribution and $p(\mathbf{z})$ is the distribution of $\mathbf{z}$.
 
-
-$V(D,G)=\mathbb{E}_{x\sim p(\mathbf{x})} \ln(D(\mathbf{x})) + \mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})} \ln(1-D(G(\mathbf{z})))$
-
+$V(D,G) = \mathbb{E}_{\mathbf{x} \sim p(\mathbf{x})} \ln(D(\mathbf{x})) + \mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})} \ln(1 - D(G(\mathbf{z})))$
 
 As we are trying to trick the discriminator, we would like to find a $G$ that minimize the above expression, such as:
 
-
 $min_{G} max_{D} V(D,G)$
-
 
 ### Training GANs 
 
@@ -105,7 +98,7 @@ ___Training Discriminator___
 
 We can also use the cross-entropy to train the discriminator; we simply multiply $V(G,D)$ by a negative number, set $y=0$ for the generated values and $y=1$ for the real values. We do not update the generator parameters. 
 
-$V(G)=\sum_{n	\in \mathcal{D}} (\ln(D(\mathbf{x}_n)))+\sum_{k 	\notin \mathcal{D}} \ln(1-D(G(\mathbf{z}_k) ))$
+$V(G) = \sum_{n \in \mathcal{D}} \ln(D(\mathbf{x}_n)) + \sum_{k \notin \mathcal{D}} \ln(1 - D(G(\mathbf{z}_k)))$
 
 The first term is the real loss and the second is the fake loss in Keras.
 
@@ -113,9 +106,9 @@ We create the optimizer for the discriminator and generator:
 
 We now train the model; as the dataset is small, we will use batch gradient descent. 
 
-For each iteration we will generate $M$ real examples $\{\mathbf{x}_{1}, ...,\mathbf{x}_{M}\}$, these are from the generating distribution $p(\mathbf{x})$. This would be our actual dataset if we used real data.  
+For each iteration we will generate $M$ real examples $\{\mathbf{x}_1, ..., \mathbf{x}_M\}$, these are from the generating distribution $p(\mathbf{x})$. This would be our actual dataset if we used real data.  
 
-We will then generate a sample batch of $M$ noise samples $\{\mathbf{z}_{1}, ...,\mathbf{z}_{M}\}$ from noise prior $p(\mathbf{z})$ and convert the result to a generated image using the generator $\{\hat{\mathbf{x}}_{1}, ...,\hat{\mathbf{x}}_{M}\}$. 
+We will then generate a sample batch of $M$ noise samples $\{\mathbf{z}_1, ..., \mathbf{z}_M\}$ from noise prior $p(\mathbf{z})$ and convert the result to a generated image using the generator $\{\hat{\mathbf{x}}_1, ..., \hat{\mathbf{x}}_M\}$. 
 
 We determine the output of the discriminator for both the real and generated samples. We calculate the loss and then update the discriminator and generator through their respective stochastic gradients.
 
