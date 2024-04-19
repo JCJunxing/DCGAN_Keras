@@ -1,11 +1,8 @@
 The content is on https://cognitiveclass.ai/courses/creating-anime-characters-using-dcgans-and-keras
 
-# **Creating anime characters using Deep Convolutional Generative Adversarial Networks (DCGANs) and Keras**
+# **Deep Convolutional Generative Adversarial Networks (DCGANs) and Keras**
 
-Imagine if you are in a video game company, your games is famous for its unique characters for every player. With the growth of the player amount, it comes to be a nearly impossible mission to hand plot the characters for millions of players. Your boss plans to keep the unique character creating function in the game, and you need a method to handle the task. <br>
-
-__Generative adversarial networks (GANs) might help!__<br>
-It is a class of machine learning frameworks, first published in June 2014 <a href=https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-GPXX0XCEEN/papers/1406.2661.pdf >[1]</a>. <br>
+__Generative adversarial networks (GANs) a class of machine learning frameworks, first published in June 2014 <a href=https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-GPXX0XCEEN/papers/1406.2661.pdf >[1]</a>. <br>
 GANs could generate new data following the statistic features of the data in the training set. GANs is widely used to generate new and realistic photograph that is authentic to human observers. <br>
 
 Convolutional networks (CNNs) has seen huge adoption in computer vision applications. Applying the CNNs to GANs models could help us in building a photo generating model. The combined method is called Deep Convolutional Generative Adversarial Networks (DCGANs). <br>
@@ -144,4 +141,6 @@ convolutions (generator)**.
 - Use **Adam optimizer**.  
 
 These approaches will result in more stable training of deeper generative models.
+
+
 
